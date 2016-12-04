@@ -41,6 +41,9 @@ class DataCollectorAPIClient:
         authorization = "SharedKey {}:{}".format(self.customer_id,encoded_hash)
         return authorization
 
+    def __rfc1123date(self):
+        return datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
     # Build and send a request to the POST API
     def post_data(self, log_type, json_records, record_timestamp=''):
         # Check if string contains other than alpha characters
@@ -49,7 +52,7 @@ class DataCollectorAPIClient:
                 "ERROR: log_type supports only alpha characters: {}".format(log_type))
 
         body = json.dumps(json_records)
-        rfc1123date = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+        rfc1123date = self.__rfc1123date()
         content_length = len(body)
         signature = self.__signature(rfc1123date, content_length)
         uri = "https://{}.ods.opinsights.azure.com/api/logs?api-version={}".format(
