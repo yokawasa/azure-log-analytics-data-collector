@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import datetime
 import hashlib
@@ -41,17 +42,30 @@ class DataCollectorAPIClient:
         return authorization
 
     # Build and send a request to the POST API
-    def post_data(self, log_type, json_records):
+    def post_data(self, log_type, json_records, record_timestamp=''):
+        # Check if string contains other than alpha characters
+        if not log_type.isalpha():
+            raise Exception(
+                "ERROR: log_type supports only alpha characters: {}".format(log_type))
+
         body = json.dumps(json_records)
         rfc1123date = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
         content_length = len(body)
         signature = self.__signature(rfc1123date, content_length)
         uri = "https://{}.ods.opinsights.azure.com/api/logs?api-version={}".format(
                     self.customer_id, _LOG_ANALYTICS_DATA_COLLECTOR_API_VERSION)
+
+        """
+        time-generated-field
+        The name of a field in the data that contains the timestamp of the data item.
+        If this isn’t specified, the default is the time that the message is ingested.
+        The field format is ISO 8601 format YYYY-MM-DDThh:mm:ssZ
+        """
         headers = {
             'content-type': 'application/json',
             'Authorization': signature,
             'Log-Type': log_type,
-            'x-ms-date': rfc1123date
+            'x-ms-date': rfc1123date,
+            'time-generated-field': record_timestamp
         }
         return requests.post(uri,data=body, headers=headers)
