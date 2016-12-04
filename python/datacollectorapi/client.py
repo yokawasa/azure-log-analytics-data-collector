@@ -30,13 +30,13 @@ class DataCollectorAPIClient:
 
     # Build the API signature
     def __signature(self, date, content_length):
-        sigstr= "POST\n{}\napplication/json\nx-ms-date:{}\n/api/logs".format(
+        sigs= "POST\n{}\napplication/json\nx-ms-date:{}\n/api/logs".format(
                             str(content_length),date)
-        byte_seq_utf8_signstr = bytes(sigstr).encode('utf-8')  
+        utf8_sigs = bytes(sigs).encode('utf-8')  
         decoded_shared_key = base64.b64decode(self.shared_key)
-        hmac_sha256_sigstr = hmac.new(
-                decoded_shared_key, byte_seq_utf8_signstr,digestmod=hashlib.sha256).digest()
-        encoded_hash = base64.b64encode(hmac_sha256_sigstr)
+        hmac_sha256_sigs = hmac.new(
+                decoded_shared_key, utf8_sigs,digestmod=hashlib.sha256).digest()
+        encoded_hash = base64.b64encode(hmac_sha256_sigs)
         authorization = "SharedKey {}:{}".format(self.customer_id,encoded_hash)
         return authorization
 
