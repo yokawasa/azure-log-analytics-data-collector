@@ -9,16 +9,16 @@ with open('datacollectorapi/version.py', 'r') as fd:
         r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]',
         fd.read(), re.MULTILINE).group(1)
 
-setup(name='azure-log-analytics-data-collector-api-client',
+setup(name='azure-log-analytics-data-collector-api',
     version=version,
     description='Azure Log Analytics Data Collector API Client',
     author='Yoichi Kawasaki',
     author_email='yoichi.kawasaki@outlook.com',
-    url='https://github.com/yokawasa/azure-log-analytics-data-collector/tree/master/python',
+    url='https://github.com/yokawasa/azure-log-analytics-data-collector',
     platforms='any',
     license='MIT',
     packages = ["datacollectorapi"],
-    py_modules=['azure-log-analytics-data-collector-api-client'],
+    py_modules=['azure-log-analytics-data-collector-api'],
     install_requires=[
         'simplejson'
     ],
