@@ -1,5 +1,5 @@
-# azure-log-analytics-data-collector Python Client
-Azure Log Analytics Data Collector API Python Client
+# azure-log-analytics-data-collector Ruby Client
+Azure Log Analytics Data Collector API Ruby Client
 
 ## Installation
 ```
