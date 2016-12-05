@@ -1,28 +1,19 @@
-# Azure::Loganalytics::Datacollectorapi
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/azure/loganalytics/datacollectorapi/client`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# azure-log-analytics-data-collector Python Client
+Azure Log Analytics Data Collector API Python Client
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'azure-loganalytics-datacollector-api'
+```
+gem install azure-loganalytics-datacollector-api
 ```
 
-And then execute:
+## Change log
 
-    $ bundle
+* [Changelog](ChangeLog.md)
 
-Or install it yourself as:
+## Links
 
-    $ gem install azure-loganalytics-datacollector-api
-
-## Usage
-
-TODO: Write usage instructions here
+* https://rubygems.org/gems/azure-loganalytics-datacollector-api
+* [Azure Log Analytics Data Collecotr API](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-data-collector-api)
 
 ## Development
 
@@ -32,8 +23,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/azure-loganalytics-datacollectorapi-client. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/yokawasa/azure-log-analytics-data-collector. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
