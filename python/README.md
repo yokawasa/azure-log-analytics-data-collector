@@ -7,7 +7,7 @@ Azure Log Analytics Data Collector API Python Client libraries
 
 ## Links
 
-* https://pypi.python.org/pypi/azure-log-analytics-data-collector-api-client
+* https://pypi.python.org/pypi/azure-log-analytics-data-collector-api
 * [Azure Log Analytics Data Collecotr API](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-data-collector-api)
 
 ## Contributing
