@@ -5,7 +5,7 @@
 
 <table>
   <tr>
-    <td>Lang</td><td>Client library/Source/Sample code</td>
+    <td>Language</td><td>Data Collector Client library or Sample Code, and Source Code </td>
   </tr>
   <tr>
     <td>Ruby</td><td>[Rubygem Package](https://rubygems.org/gems/azure-loganalytics-datacollector-api) | [Source code](https://github.com/yokawasa/azure-log-analytics-data-collector/tree/master/ruby) </td>
