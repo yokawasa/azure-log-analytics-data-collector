@@ -6,7 +6,6 @@
  */
 namespace datacollectorapi;
 
-require_once('Helper.php');
 class Client
 {
     private $customer_id = null;
