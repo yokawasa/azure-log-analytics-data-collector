@@ -5,7 +5,7 @@ Azure Log Analytics Data Collector API Client for PHP
 ## Test
 ```
 curl -s https://getcomposer.org/installer | php
-php composer.phar dump-autoload
+php composer.phar install
 cd test
 php test.php
 ```
