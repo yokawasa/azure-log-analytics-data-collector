@@ -1,10 +1,8 @@
 <?php
 
-require_once('Client.php');
-require_once('Helper.php');
+require_once __DIR__ . "/../vendor/autoload.php";
 
 use datacollectorapi\Client;
-use datacollectorapi\Helper;
 
 $customer_id = '<Customer ID aka WorkspaceID String>';
 $shared_key =  '<Primary Key String>';
@@ -43,7 +41,8 @@ array_push($json_records, $record2);
 
 $response =  $client->post_data($log_type, $json_records);
 var_dump($response);
-if (!datacollectorapi\is_success($response)) 
+
+if (!datacollectorapi\Client::is_success($response)) 
 {
     echo "Problem reading data\n";
 } else {
