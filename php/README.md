@@ -3,12 +3,21 @@ Azure Log Analytics Data Collector API Client for PHP
 
 
 ## Test
+Download composer.phar and install client libraries autoload file:
 ```
 curl -s https://getcomposer.org/installer | php
 php composer.phar install
-cd test
+```
+Then move to test dir and configure the following variables in test.php
+```
+$customer_id = '<Customer ID aka WorkspaceID String>';
+$shared_key =  '<Primary Key String>';
+```
+Finally run test.php
+```
 php test.php
 ```
+
 
 ## Change log
 
