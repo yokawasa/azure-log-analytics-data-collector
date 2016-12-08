@@ -6,6 +6,7 @@
  */
 namespace datacollectorapi;
 
+require_once('Helper.php');
 class Client
 {
     private $customer_id = null;
@@ -101,6 +102,12 @@ class Client
         $encoded_hash = base64_encode($hmac_sha256_sigs);
         return sprintf("SharedKey %s:%s", $this->customer_id,$encoded_hash);
     }
+
+    static function is_success($res)
+    {
+        return (is_array($res) and $res['reponse_code'] == 202) ? true : false;
+    }
+
 }
 
 ?>
