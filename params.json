@@ -1,0 +1,6 @@
+{
+  "name": "Azure-log-analytics-data-collector",
+  "tagline": "Azure Log Analytics Data Collector API Client libraries",
+  "body": "# azure-log-analytics-data-collector\r\n [Azure Log Analytics HTTP Data Collecotr API](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-data-collector-api) Client libraries\r\n\r\n## Client libraries and Sample code\r\n\r\n* Ruby\r\n * [Rubygem Package](https://rubygems.org/gems/azure-loganalytics-datacollector-api)\r\n * [Source code](https://github.com/yokawasa/azure-log-analytics-data-collector/tree/master/ruby)\r\n* Python\r\n * [Python Package](https://pypi.python.org/pypi/azure-log-analytics-data-collector-api)\r\n * [Source code](https://github.com/yokawasa/azure-log-analytics-data-collector/tree/master/python)\r\n* PHP\r\n * [Source code](https://github.com/yokawasa/azure-log-analytics-data-collector/tree/master/php)\r\n* Java\r\n * Planned\r\n* CSharp\r\n * [Sample Code](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-data-collector-api#sample-requests)\r\n* PowerShell\r\n * [Sample Code](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-data-collector-api#sample-requests)",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
