@@ -41,6 +41,10 @@ module Azure
           res
         end
 
+        def self.is_success(res)
+          return (res.code == 202) ? true : false
+        end
+
         private
 
         def is_alpha(s)
