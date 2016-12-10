@@ -44,7 +44,7 @@ describe Azure::Loganalytics::Datacollectorapi::Client do
 
     client=Azure::Loganalytics::Datacollectorapi::Client::new( customer_id, shared_key)
     res = client.post_data(log_type, json_records)
-    expect(res.code).to eq(202)
+    expect(Azure::Loganalytics::Datacollectorapi::Client.is_success(res)).to eq(true)
   end
 
 end
