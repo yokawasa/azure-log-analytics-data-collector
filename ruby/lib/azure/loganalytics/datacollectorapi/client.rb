@@ -42,7 +42,7 @@ module Azure
         end
 
         def self.is_success(res)
-          return (res.code == 202) ? true : false
+          return (res.code == 200) ? true : false
         end
 
         private
