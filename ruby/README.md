@@ -7,53 +7,76 @@ gem install azure-loganalytics-datacollector-api
 ```
 
 ## Sample code (Ruby Client)
-
+### Sample1 - No time_generated_field option
 ```
 require "azure/loganalytics/datacollectorapi/client"
 
+customer_id = '<Customer ID aka WorkspaceID String>'
+shared_key = '<The primary or the secondary Connected Sources client authentication key>'
+log_type = "MyCustomLog"
+
 posting_records = []
 record1= {
-  :Log_ID => "aaaa4-c848-4df0-8aaa-ffe033e75d57",
-  :date => "2017-04-21 09:44:32 JST",
-  :processing_time => "372",
-  :remote => "101.202.74.59",
-  :method => "GET / HTTP/1.1",
-  :status => "304",
-  :referer => "-",
-  :agent => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:27.0) Gecko/20100101 Firefox/27.0",
-  :timegen => "2017-04-21T11:46:43Z" # YYYY-MM-DDThh:mm:ssZ ->  OK
+  :string => "MyText1",
+  :boolean => true,
+  :number => 100
 }
-record2 ={
-  :Log_ID => "bbbb4-8034-4cc3-uirtx-f068dd4cd659",
-  :date => "2017-04-21 09:45:14 JST",
-  :processing_time => "105",
-  :remote => "201.78.74.59",
-  :user => "-",
-  :method => "GET /manager/html HTTP/1.1",
-  :status =>"200",
-  :size => "-",
-  :referer => "-",
-  :agent => "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0",
-  :timegen => "2017-04-21T12:13:35.576Z" # YYYY-MM-DDThh:mm:ssZ  -> OK
+record2= {
+  :string => "MyText2",
+  :boolean => false,
+  :number => 200
 }
-
 posting_records.push(record1)
 posting_records.push(record2)
 
-time_generated_field = "timegen"
-client=DataCollectionAPIClient::new( customer_id, shared_key)
-res = client.post_data(log_type, posting_records,time_generated_field)
+client=Azure::Loganalytics::Datacollectorapi::Client::new( customer_id, shared_key)
+res = client.post_data(log_type, posting_records)
 puts res
 puts "res code=#{res.code}"
 
-if DataCollectionAPIClient::is_success(res)
+if Azure::Loganalytics::Datacollectorapi::Client.is_success(res)
   puts "operation was succeeded!"
 else
   puts "operation was failured!"
 end
-
 ```
 
+### Sample2 - With time_generated_field option
+```
+require "azure/loganalytics/datacollectorapi/client"
+
+customer_id = '<Customer ID aka WorkspaceID String>'
+shared_key = '<The primary or the secondary Connected Sources client authentication key>'
+log_type = "MyCustomLogXY"
+
+posting_records = []
+record1= {
+  :string => "MyText1",
+  :boolean => true,
+  :number => 100,
+  :timegen => "2017-11-23T11:13:35.576Z" # YYYY-MM-DDThh:mm:ssZ
+}
+record2= {
+  :string => "MyText2",
+  :boolean => false,
+  :number => 200,
+  :timegen => "2017-11-23T12:13:35.576Z" # YYYY-MM-DDThh:mm:ssZ
+}
+posting_records.push(record1)
+posting_records.push(record2)
+
+time_generated_field = "timegen"
+client=Azure::Loganalytics::Datacollectorapi::Client::new( customer_id, shared_key)
+res = client.post_data(log_type, posting_records, time_generated_field)
+puts res
+puts "res code=#{res.code}"
+
+if Azure::Loganalytics::Datacollectorapi::Client.is_success(res)
+  puts "operation was succeeded!"
+else
+  puts "operation was failured!"
+end
+```
 
 ## Change log
 
