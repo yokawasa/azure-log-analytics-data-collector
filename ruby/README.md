@@ -47,7 +47,7 @@ require "azure/loganalytics/datacollectorapi/client"
 
 customer_id = '<Customer ID aka WorkspaceID String>'
 shared_key = '<The primary or the secondary Connected Sources client authentication key>'
-log_type = "MyCustomLogXY"
+log_type = "MyCustomLog"
 
 posting_records = []
 record1= {
