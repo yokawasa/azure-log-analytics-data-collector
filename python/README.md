@@ -1,6 +1,17 @@
 # azure-log-analytics-data-collector Python Client libraries
 Azure Log Analytics Data Collector API Python Client libraries
 
+## Installation
+```
+pip install azure-log-analytics-data-collector-api
+
+# Or Upgrade
+pip install azure-log-analytics-data-collector-api --upgrade
+```
+
+## Sample Code (Python Client)
+* [Sample Code](test/testclient.py)
+
 ## Change log
 
 * [Changelog](ChangeLog.md)
