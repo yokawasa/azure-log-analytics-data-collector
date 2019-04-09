@@ -43,9 +43,9 @@ def main():
     api = client.DataCollectorAPIClient(customer_id,shared_key)   
     response = api.post_data(log_type, json_records)
     if (helper.is_success(response.status_code)):
-        print 'Succeeded in posting data to Data Collector API!!'
+        print( 'Succeeded in posting data to Data Collector API!!')
     else:
-        print "Failure: Error code:{}".format(response.status_code)
+        print( "Failure: Error code:{}".format(response.status_code))
 
 if __name__ == '__main__':
     main()

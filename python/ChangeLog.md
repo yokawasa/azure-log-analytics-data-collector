@@ -1,3 +1,6 @@
+## 0.2.0
+* fixedup bug - [issue #2](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/2): exception in creating API signature in Python3
+
 ## 0.1.2
 * fixedup bug - [issue #1](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/1)
 
