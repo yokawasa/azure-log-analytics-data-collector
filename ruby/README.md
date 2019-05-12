@@ -2,13 +2,13 @@
 Azure Log Analytics Data Collector API Ruby Client
 
 ## Installation
-```
+```bash
 gem install azure-loganalytics-datacollector-api
 ```
 
 ## Sample code (Ruby Client)
 ### Sample1 - No time_generated_field option
-```
+```ruby
 require "azure/loganalytics/datacollectorapi/client"
 
 customer_id = '<Customer ID aka WorkspaceID String>'
@@ -42,7 +42,7 @@ end
 ```
 
 ### Sample2 - With time_generated_field option
-```
+```ruby
 require "azure/loganalytics/datacollectorapi/client"
 
 customer_id = '<Customer ID aka WorkspaceID String>'
@@ -77,6 +77,20 @@ else
   puts "operation was failured!"
 end
 ```
+
+### Sample3 - use proxy to access the API
+```ruby
+require "azure/loganalytics/datacollectorapi/client"
+
+...
+client=Azure::Loganalytics::Datacollectorapi::Client::new( customer_id, shared_key)
+# client.set_proxy() # ENV['http_proxy'] is set by default 
+client.set_proxy(your_proxy)
+res = client.post_data(log_type, posting_records, time_generated_field)
+puts res
+...
+```
+
 
 ## Change log
 

@@ -41,6 +41,10 @@ module Azure
           res
         end
 
+        def set_proxy(proxy='')
+          RestClient.proxy = proxy.empty? ? ENV['http_proxy'] : proxy
+        end
+
         def self.is_success(res)
           return (res.code == 200) ? true : false
         end
