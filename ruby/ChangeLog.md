@@ -1,4 +1,4 @@
-## 0.1.3
+## 0.1.4
 * Add `set_proxy` method to client - [issue#2](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/2)
 
 ## 0.1.2
