@@ -8,7 +8,7 @@ module Azure
 
       class Client
 
-        def initialize (customer_id, shared_key)
+        def initialize (customer_id, shared_key,endpoint ='ods.opinsights.azure.com')
           require 'rest-client'
           require 'json'
           require 'openssl'
@@ -17,6 +17,7 @@ module Azure
 
           @customer_id = customer_id
           @shared_key = shared_key
+          @endpoint = endpoint
         end
 
         def post_data(log_type, json_records, record_timestamp ='')
@@ -24,8 +25,8 @@ module Azure
           raise ConfigError, 'log_type must be only alpha characters' if not is_alpha(log_type)
           raise ConfigError, 'no json_records' if json_records.empty?
           body =  json_records.to_json
-          uri = sprintf("https://%s.ods.opinsights.azure.com/api/logs?api-version=%s",
-                        @customer_id, API_VERSION)
+          uri = sprintf("https://%s.%s/api/logs?api-version=%s",
+                        @customer_id, @endpoint, API_VERSION)
           date = rfc1123date()
           sig = signature(date, body.bytesize)
 
