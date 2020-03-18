@@ -1,3 +1,6 @@
+## 0.1.6
+* fix CVE-2020-8130 - [issue #7](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/7)
+
 ## 0.1.5
 * Add endpoint parameter with the default value for Azure public - [PR#5](https://github.com/yokawasa/azure-log-analytics-data-collector/pull/5)
 
