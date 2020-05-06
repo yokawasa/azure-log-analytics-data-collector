@@ -1,3 +1,6 @@
+## 0.2.0
+* Support setting the x-ms-AzureResourceId Header - [issue #8](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/8)
+
 ## 0.1.6
 * fix CVE-2020-8130 - [issue #7](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/7)
 

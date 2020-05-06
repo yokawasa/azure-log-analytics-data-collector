@@ -80,7 +80,51 @@ else
 end
 ```
 
-### Sample3 - use proxy to access the API
+### Sample3 - With time_generated_field and azure_resource_id option
+Supported setting azure_resource_id option from version [0.2.0](https://github.com/yokawasa/azure-log-analytics-data-collector/releases/tag/v0.2.0)
+```ruby
+require "azure/loganalytics/datacollectorapi/client"
+
+customer_id = '<Customer ID aka WorkspaceID String>'
+shared_key = '<The primary or the secondary Connected Sources client authentication key>'
+log_type = "MyCustomLog"
+
+posting_records = []
+record1= {
+  :string => "MyText1",
+  :boolean => true,
+  :number => 100,
+  :timegen => "2017-11-23T11:13:35.576Z" # YYYY-MM-DDThh:mm:ssZ
+}
+record2= {
+  :string => "MyText2",
+  :boolean => false,
+  :number => 200,
+  :timegen => "2017-11-23T12:13:35.576Z" # YYYY-MM-DDThh:mm:ssZ
+}
+posting_records.push(record1)
+posting_records.push(record2)
+
+time_generated_field = "timegen"
+
+# Azure Resource ID
+# [Azure Resource ID Format]
+# /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+azure_resource_id ="/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage"
+
+client=Azure::Loganalytics::Datacollectorapi::Client::new( customer_id, shared_key)
+res = client.post_data(log_type, posting_records, time_generated_field, azure_resource_id)
+puts res
+puts "res code=#{res.code}"
+
+if Azure::Loganalytics::Datacollectorapi::Client.is_success(res)
+  puts "operation was succeeded!"
+else
+  puts "operation was failured!"
+end
+```
+
+### Sample4 - use proxy to access the API
 ```ruby
 require "azure/loganalytics/datacollectorapi/client"
 
