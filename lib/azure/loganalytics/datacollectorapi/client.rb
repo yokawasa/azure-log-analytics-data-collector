@@ -8,7 +8,7 @@ module Azure
 
       class Client
 
-        def initialize (customer_id, shared_key,endpoint ='ods.opinsights.azure.com')
+        def initialize (customer_id, shared_key, endpoint ='ods.opinsights.azure.com')
           require 'rest-client'
           require 'json'
           require 'openssl'
@@ -18,9 +18,10 @@ module Azure
           @customer_id = customer_id
           @shared_key = shared_key
           @endpoint = endpoint
+          @default_azure_resource_id = ''
         end
 
-        def post_data(log_type, json_records, record_timestamp ='')
+        def post_data(log_type, json_records, record_timestamp ='', azure_resource_id ='' )
           raise ConfigError, 'no log_type' if log_type.empty?
           raise ConfigError, 'log_type must be only alpha characters' if not is_alpha(log_type)
           raise ConfigError, 'no json_records' if json_records.empty?
@@ -35,6 +36,7 @@ module Azure
               'Authorization' => sig,
               'Log-Type' => log_type,
               'x-ms-date' => date,
+              'x-ms-AzureResourceId' => azure_resource_id.empty? ? @default_azure_resource_id : azure_resource_id,
               'time-generated-field' => record_timestamp
           }
 
@@ -44,6 +46,10 @@ module Azure
 
         def set_proxy(proxy='')
           RestClient.proxy = proxy.empty? ? ENV['http_proxy'] : proxy
+        end
+        
+        def set_default_azure_resoruce_id(azure_resource_id)
+          @default_azure_resource_id = azure_resource_id
         end
 
         def self.is_success(res)
