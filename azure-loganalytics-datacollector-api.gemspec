@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "azure-loganalytics-datacollector-api"
   spec.version       = Azure::Loganalytics::Datacollectorapi::VERSION
   spec.authors       = ["Yoichi Kawasaki"]
-  spec.email         = ["yoichi.kawasaki@outlook.com"]
+  spec.email         = ["yokawasa@gmail.com"]
   spec.summary       = %q{Azure Log Analytics Data Collector API Ruby Client}
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/yokawasa/azure-log-analytics-data-collector"
