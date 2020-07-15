@@ -1,3 +1,6 @@
+## 0.3.0
+* Enhance log type validation: check not only alpha but also numeric, underscore, and character length (may not exceed 100) - [issue #11](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/11)
+
 ## 0.2.0
 * Support setting the x-ms-AzureResourceId Header - [issue #8](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/8)
 

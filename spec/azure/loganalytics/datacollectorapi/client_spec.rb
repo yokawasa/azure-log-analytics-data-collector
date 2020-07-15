@@ -5,13 +5,34 @@ describe Azure::Loganalytics::Datacollectorapi::Client do
     expect(Azure::Loganalytics::Datacollectorapi::VERSION).not_to be nil
   end
 
-  #it "does something useful" do
-  #  expect(false).to eq(true)
-  #end
-
   customer_id = '<Customer ID aka WorkspaceID String>'
   shared_key =  '<Primary Key String>'
   log_type = "MyCustomLog"
+
+  it "log type validation" do
+    json_records = []
+    dummy= {
+      :string => "dummy title",
+      :number => 10
+    }
+    valid_log_type = "abcedefghijklmnopqrstuvwxyz1234567890_"
+    invalid_log_type1 = "*-|[]//"
+    invalid_log_type2 = "abcde__xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    json_records.push(dummy)
+    client=Azure::Loganalytics::Datacollectorapi::Client::new( customer_id, shared_key)
+
+    res = client.post_data(valid_log_type, json_records)
+    expect(Azure::Loganalytics::Datacollectorapi::Client.is_success(res)).to eq(true)
+
+    expect{
+      client.post_data(invalid_log_type1, json_records)
+    }.to raise_error(Exception)
+
+    expect{
+      client.post_data(invalid_log_type2, json_records)
+    }.to raise_error(Exception)
+
+  end
 
   it "posting data to datacollector api" do
     json_records = []

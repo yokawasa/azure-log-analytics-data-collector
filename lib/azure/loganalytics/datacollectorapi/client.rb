@@ -23,7 +23,7 @@ module Azure
 
         def post_data(log_type, json_records, record_timestamp ='', azure_resource_id ='' )
           raise ConfigError, 'no log_type' if log_type.empty?
-          raise ConfigError, 'log_type must be only alpha characters' if not is_alpha(log_type)
+          raise ConfigError, 'log_type must only contain alpha numeric and _, and not exceed 100 chars' if not is_valid_log_type(log_type)
           raise ConfigError, 'no json_records' if json_records.empty?
           body =  json_records.to_json
           uri = sprintf("https://%s.%s/api/logs?api-version=%s",
@@ -58,8 +58,8 @@ module Azure
 
         private
 
-        def is_alpha(s)
-          return (s.match(/^[[:alpha:]]+$/)) ? true : false
+        def is_valid_log_type(s)
+          return ( s.match(/^[a-zA-Z0-9_]+$/) && s.length <= 100 ) ? true : false
         end
 
         def rfc1123date()
