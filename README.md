@@ -3,6 +3,22 @@
 [Azure Log Analytics Data Collector API](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api) Client Libraries for Ruby. The repository was originally created for multiple programming languages, but it was refactored as a dedicated one for Ruby client. Python and PHP client libraries were moved to [azure-log-analytics-data-colloector-python](https://github.com/yokawasa/azure-log-analytics-data-collector-python) and [azure-log-analytics-data-colloector-php](https://github.com/yokawasa/azure-log-analytics-data-collector-php) respectively.
 
 
+## Retry policy
+
+The client internal leverage [rest-client] to send HTTP request to the API. The client library retries request using the rest-client on the following status code (which is [recommended action](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api)).
+  * `429` - Too Many Requests
+  * `500` - Internal Server Error
+  * `503` -	Service Unavailable
+
+By default, the client library retres for a total of `3` times, sleeping `5 sec` between retries. The number of retries and sleeping time between retries can be changed with `set_retries` in the client class.
+
+```ruby
+  def set_retries(max_retries, retry_sleep_period)
+    @max_retries = max_retries
+    @retry_sleep_period = retry_sleep_period
+  end
+```
+
 ## Installation
 ```bash
 gem install azure-loganalytics-datacollector-api

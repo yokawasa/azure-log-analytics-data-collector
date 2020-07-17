@@ -1,3 +1,9 @@
+## 0.4.0
+* restclient retries request on the following status code - [issue #10](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/10)
+  * 429 - Too Many Requests
+  * 500 - Internal Server Error
+  * 503 -	Service Unavailable
+
 ## 0.3.0
 * Enhance log type validation: check not only alpha but also numeric, underscore, and character length (may not exceed 100) - [issue #11](https://github.com/yokawasa/azure-log-analytics-data-collector/issues/11)
 

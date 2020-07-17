@@ -8,6 +8,9 @@ module Azure
 
       class Client
 
+        DEFAUT_MAX_RETRIES = 3.freeze
+        DEFAULT_RETRY_SLEEP_PERIOD = 5.freeze
+
         def initialize (customer_id, shared_key, endpoint ='ods.opinsights.azure.com')
           require 'rest-client'
           require 'json'
@@ -19,6 +22,9 @@ module Azure
           @shared_key = shared_key
           @endpoint = endpoint
           @default_azure_resource_id = ''
+
+          @max_retries = DEFAUT_MAX_RETRIES
+          @retry_sleep_period = DEFAULT_RETRY_SLEEP_PERIOD    
         end
 
         def post_data(log_type, json_records, record_timestamp ='', azure_resource_id ='' )
@@ -40,8 +46,21 @@ module Azure
               'time-generated-field' => record_timestamp
           }
 
-          res = RestClient.post( uri, body, headers)
-          res
+          retries = 0 
+          begin
+            res = RestClient.post( uri, body, headers)
+            res
+          rescue => e
+            c = e.response.code.to_i
+            if c == 429 || c == 500 || c==503
+              if retries < @max_retries
+                retries += 1
+                sleep(@retry_sleep_period)
+                retry 
+              end
+            end
+            raise e
+          end
         end
 
         def set_proxy(proxy='')
@@ -50,6 +69,11 @@ module Azure
         
         def set_default_azure_resoruce_id(azure_resource_id)
           @default_azure_resource_id = azure_resource_id
+        end
+        
+        def set_retres(max_retries, retry_sleep_period)
+          @max_retries = max_retries
+          @retry_sleep_period = retry_sleep_period
         end
 
         def self.is_success(res)
