@@ -10,6 +10,9 @@ module Azure
 
         DEFAUT_MAX_RETRIES = 3.freeze
         DEFAULT_RETRY_SLEEP_PERIOD = 5.freeze
+        # API Data Limits
+        # https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api#data-limits
+        MAX_BODY_BYTE_SIZE = 31457280.freeze   # 30 MB
 
         def initialize (customer_id, shared_key, endpoint ='ods.opinsights.azure.com')
           require 'rest-client'
@@ -31,7 +34,11 @@ module Azure
           raise ConfigError, 'no log_type' if log_type.empty?
           raise ConfigError, 'log_type must only contain alpha numeric and _, and not exceed 100 chars' if not is_valid_log_type(log_type)
           raise ConfigError, 'no json_records' if json_records.empty?
+
           body =  json_records.to_json
+          body_size = body.bytesize
+          raise "too large payload (#{body_size})! max post data size is #{MAX_BODY_BYTE_SIZE} bytes!" if body_size >= MAX_BODY_BYTE_SIZE
+
           uri = sprintf("https://%s.%s/api/logs?api-version=%s",
                         @customer_id, @endpoint, API_VERSION)
           date = rfc1123date()
